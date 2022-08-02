@@ -1,10 +1,9 @@
 import './App.css';
+import HeaderComponent from './components/header/HeaderComponent';
 
 function App() {
   return (
-    <div className="m-2">
-      <h2>Unofficial Swinburne GPA Calculator</h2>
-    </div>
+    <HeaderComponent />
   );
 }
 
