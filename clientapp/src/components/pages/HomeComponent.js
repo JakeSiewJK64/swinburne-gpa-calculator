@@ -1,6 +1,7 @@
 import { Select, MenuItem, InputLabel, TextField, Button, Switch } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
+import minus from '../../assets/img/minus.svg';
 import IntroductionDialog from './IntroductionDialog';
 
 const HomeComponent = () => {
@@ -8,7 +9,7 @@ const HomeComponent = () => {
     const [semesters, setSemesters] = useState([]);
     const [creditHours, setCredithours] = useState(12.5);
     const [results, setResults] = useState({});
-    const [lockCreditHours, setLockCreditHours] = useState(true);    
+    const [lockCreditHours, setLockCreditHours] = useState(true);
 
     const grades = [
         { "grade": "HD", "value": 4, "fullname": "High Distinction" },
@@ -53,6 +54,11 @@ const HomeComponent = () => {
             subject.grade = 0
         }
         subject.grade = grade;
+        setSemesters([...semesters]);
+    }
+
+    const removeSubject = (semester, subjectindex) => {
+        semester.subjects.splice(subjectindex, 1);
         setSemesters([...semesters]);
     }
 
@@ -149,6 +155,7 @@ const HomeComponent = () => {
                                                         ))}
                                                     </Select>
                                                 </div>
+                                                <img src={minus} alt="minus" style={{ width: "20px", cursor: "pointer" }} className="pt-4 removesubject" onClick={() => removeSubject(semester, subjectindex)} />
                                             </Flex>
                                         }) :
                                             <></>
