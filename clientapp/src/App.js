@@ -1,5 +1,5 @@
 import './App.css';
-import HeaderComponent from './components/shared/header';
+import HeaderComponent from './components/shared/Header/Header';
 
 function App() {
   return (
