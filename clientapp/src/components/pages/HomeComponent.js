@@ -8,11 +8,30 @@ const HomeComponent = () => {
     var [creditHours, setCredithours] = useState(12.5);
 
     const grades = [
-        { "grade": "HD", "value": 4 },
-        { "grade": "D", "value": 3 },
-        { "grade": "C", "value": 2 },
-        { "grade": "P", "value": 1 },
+        { "grade": "HD", "value": 4, "fullname": "High Distinction" },
+        { "grade": "D", "value": 3, "fullname": "Distinction" },
+        { "grade": "C", "value": 2, "fullname": "Credit" },
+        { "grade": "P", "value": 1, "fullname": "Pass" },
     ];
+
+    const processCGPA = () => {
+        let totalgpa = 0;
+        let totalcredithours = 0;
+        semesters.forEach(x => {
+            x.subjects.forEach(subject => {
+                totalgpa += (subject.grade * creditHours);
+                totalcredithours += creditHours;
+            });
+        });
+        console.log(totalgpa);
+        console.log(totalcredithours);
+        console.log((totalgpa / totalcredithours).toFixed(3));
+    }
+
+    const removeSemester = (index) => {
+        semesters.splice(index, 1);
+        setSemesters([...semesters]);
+    }
 
     const setSubjectName = (subject, value) => {
         if (!subject.subjectname) {
@@ -60,7 +79,7 @@ const HomeComponent = () => {
                     </div>
                 </Flex>
                 <div className='w-100 d-flex'>
-                    <Button className='m-1 ms-auto' variant='outlined' onClick={_ => {
+                    <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
                         setSemesters(oldArray => [...oldArray, {}])
                     }}>Add Semester</Button>
                 </div>
@@ -70,15 +89,19 @@ const HomeComponent = () => {
                             <div className='card my-3' key={semesterindex}>
                                 <h3>Semester {semesterindex + 1}</h3>
                                 <Flex flexDirection='column' gap={10} className='m-2'>
-                                    <Button className='ms-auto' variant='outlined' onClick={_ => {
-                                        addSubjectToSemester(semesterindex)
-                                    }}>Add Subjects</Button>
+                                    <Flex flexDirection='row' gap={10}>
+                                        <Button className='ms-auto' variant='outlined' onClick={_ => {
+                                            addSubjectToSemester(semesterindex)
+                                        }}>Add Subjects</Button>
+                                        <Button className='bg-danger text-white' variant="text" onClick={() => removeSemester(semesterindex)}>Remove Semester</Button>
+                                    </Flex>
                                     {
                                         semester.subjects ? semester.subjects.map((a, subjectindex) => {
                                             return <Flex flexDirection='row' gap={10} key={subjectindex}>
                                                 <div className='w-100'>
                                                     <InputLabel className='m-1 text-start'>Subject Name</InputLabel>
                                                     <TextField
+                                                        required
                                                         label="Subject Name"
                                                         variant="outlined"
                                                         type="text"
@@ -91,6 +114,7 @@ const HomeComponent = () => {
                                                 <div className='w-100'>
                                                     <InputLabel className='m-1 text-start'>Select Grade</InputLabel>
                                                     <Select
+                                                        required
                                                         fullWidth
                                                         label="Grade"
                                                         labelId="grade"
@@ -100,7 +124,7 @@ const HomeComponent = () => {
                                                     >
                                                         {grades.map((x) => (
                                                             <MenuItem value={x.value} key={x.value}>
-                                                                {x.grade}
+                                                                {x.fullname} ({x.grade})
                                                             </MenuItem>
                                                         ))}
                                                     </Select>
@@ -114,6 +138,18 @@ const HomeComponent = () => {
                         );
                     }) : <p>Start by Creating a Semester</p>
                 }
+                <div className='d-flex flex-row'>
+                    <div className='ms-auto'>
+                        <Flex gap={10}>
+                            {
+                                semesters.length > 0 ? <>
+                                    <Button className='bg-danger text-white' variant="text" onClick={() => setSemesters([])}>Reset</Button>
+                                    <Button className='bg-warning text-black' variant="text" onClick={() => { processCGPA() }}>Calculate CGPA</Button></> : <></>
+                            }
+
+                        </Flex>
+                    </div>
+                </div>
             </div>
         </>
     )
