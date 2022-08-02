@@ -1,14 +1,16 @@
 import Head from 'next/head'
+import HomeComponent from './home_component/home_component'
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Unofficial Swinburne GPA Calculator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
+        <HomeComponent />
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
