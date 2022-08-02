@@ -10,7 +10,6 @@ const HeaderComponent = () => {
                     noWrap
                     className="text-black"
                     component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
                 >
                     Unofficial Swinburne GPA Calculator
                 </Typography>

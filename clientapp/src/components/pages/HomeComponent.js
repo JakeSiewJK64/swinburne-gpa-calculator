@@ -1,11 +1,13 @@
-import { Select, MenuItem, InputLabel, TextField, Button } from '@mui/material';
+import { Select, MenuItem, InputLabel, TextField, Button, Switch } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
 
 const HomeComponent = () => {
 
-    var [semesters, setSemesters] = useState([]);
-    var [creditHours, setCredithours] = useState(12.5);
+    const [semesters, setSemesters] = useState([]);
+    const [creditHours, setCredithours] = useState(12.5);
+    const [results, setResults] = useState({});
+    const [lockCreditHours, setLockCreditHours] = useState(true);
 
     const grades = [
         { "grade": "HD", "value": 4, "fullname": "High Distinction" },
@@ -15,17 +17,21 @@ const HomeComponent = () => {
     ];
 
     const processCGPA = () => {
-        let totalgpa = 0;
-        let totalcredithours = 0;
+        let totalgpa = .0;
+        let totalcredithours = .0;
         semesters.forEach(x => {
             x.subjects.forEach(subject => {
                 totalgpa += (subject.grade * creditHours);
                 totalcredithours += creditHours;
             });
         });
-        console.log(totalgpa);
-        console.log(totalcredithours);
-        console.log((totalgpa / totalcredithours).toFixed(3));
+        setResults({
+            data: {
+                totalGpa: totalgpa,
+                totalCreditHours: totalcredithours,
+                cgpa: (totalgpa / totalcredithours).toFixed(3)
+            }
+        })
     }
 
     const removeSemester = (index) => {
@@ -61,23 +67,35 @@ const HomeComponent = () => {
         return semesters;
     }
 
+    const resetStatistics = () => {
+        setSemesters([]);
+        results.data = undefined;
+        setResults(results);
+    }
+
     return (
         <>
             <div className="m-2">
-                <Flex flexDirection='row' gap={10}>
-                    <div className='w-100'>
-                        <InputLabel className='m-1 mt-4 text-start'>Input Credit Hours</InputLabel>
+                <div className='w-100'>
+                    <InputLabel className='m-1 mt-4 text-start'>Input Credit Hours</InputLabel>
+                    <Flex flexDirection='row' gap={10}>
                         <TextField
+                            helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd October 2022"
                             label="Credit Hours"
                             variant="outlined"
                             type="number"
                             name='credithours'
-                            value={creditHours}
                             fullWidth
+                            value={creditHours}
+                            disabled={lockCreditHours}
                             onChange={(x) => setCredithours(x.target.value)}
                         />
-                    </div>
-                </Flex>
+                        <Switch
+                            checked={!lockCreditHours}
+                            onChange={() => setLockCreditHours(!lockCreditHours)}
+                        />
+                    </Flex>
+                </div>
                 <div className='w-100 d-flex'>
                     <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
                         setSemesters(oldArray => [...oldArray, {}])
@@ -143,13 +161,36 @@ const HomeComponent = () => {
                         <Flex gap={10}>
                             {
                                 semesters.length > 0 ? <>
-                                    <Button className='bg-danger text-white' variant="text" onClick={() => setSemesters([])}>Reset</Button>
+                                    <Button className='bg-danger text-white' variant="text" onClick={() => resetStatistics()}>Reset</Button>
                                     <Button className='bg-warning text-black' variant="text" onClick={() => { processCGPA() }}>Calculate CGPA</Button></> : <></>
                             }
 
                         </Flex>
                     </div>
                 </div>
+                {
+                    results.data ?
+                        <>
+                            <Flex flexDirection='row'>
+                                <strong>Credit Hours: &nbsp;</strong>
+                                <p>{creditHours}</p>
+                            </Flex>
+                            <Flex flexDirection='row'>
+                                <strong>Total GPA: &nbsp;</strong>
+                                <p>{results.data.totalGpa}</p>
+                            </Flex>
+                            <Flex flexDirection='row'>
+                                <strong>Total Credit Hours: &nbsp;</strong>
+                                <p>{results.data.totalCreditHours}</p>
+                            </Flex>
+                            <Flex flexDirection='row'>
+                                <strong>CGPA: &nbsp;</strong>
+                                <p>{results.data.cgpa}</p>
+                            </Flex>
+                        </>
+                        :
+                        <></>
+                }
             </div>
         </>
     )
