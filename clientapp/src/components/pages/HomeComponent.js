@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 const HomeComponent = () => {
 
-    const [semesters, setSemesters] = useState([]);
-    var creditHours = 12.5;
+    var [semesters, setSemesters] = useState([]);
+    var [creditHours, setCredithours] = useState(12.5);
 
     const grades = [
         { "grade": "HD", "value": 4 },
@@ -17,19 +17,37 @@ const HomeComponent = () => {
 
     const formik = useFormik({
         initialValues: {
-            "grade": grades[0].value,
-            "credithours": creditHours
+            semesters: semesters
         },
         onSubmit: (val) => {
             console.log(val);
         },
     });
 
+    const setSubjectName = (subject, value) => {
+        if (!subject.subjectname) {
+            subject.subjectname = ""
+        }
+        subject.subjectname = value;
+        setSemesters([...semesters]);
+    }
+
+    const setSubjectGrade = (subject, grade) => {
+        if (!subject.grade) {
+            subject.grade = 0
+        }
+        subject.grade = grade;
+        setSemesters([...semesters]);
+    }
+
     const addSubjectToSemester = (index) => {
         if (!semesters[index].subjects) {
             semesters[index].subjects = [];
         }
-        semesters[index].subjects.push([]);
+        semesters[index].subjects.push({
+            subjectname: "",
+            grade: grades[0].value
+        });
         setSemesters([...semesters]);
         return semesters;
     }
@@ -46,9 +64,9 @@ const HomeComponent = () => {
                                 variant="outlined"
                                 type="number"
                                 name='credithours'
-                                value={formik.values.credithours}
+                                value={creditHours}
                                 fullWidth
-                                onChange={formik.handleChange}
+                                onChange={(x) => setCredithours(x.target.value)}
                             />
                         </div>
                     </Flex>
@@ -58,17 +76,17 @@ const HomeComponent = () => {
                         }}>Add Semester</Button>
                     </div>
                     {
-                        semesters.length > 0 ? semesters.map((x, i) => {
+                        semesters.length > 0 ? semesters.map((semester, semesterindex) => {
                             return (
-                                <div className='card my-3' key={i}>
-                                    <h3>Semester {i + 1}</h3>
+                                <div className='card my-3' key={semesterindex}>
+                                    <h3>Semester {semesterindex + 1}</h3>
                                     <Flex flexDirection='column' gap={10} className='m-2'>
                                         <Button className='ms-auto' variant='outlined' onClick={_ => {
-                                            addSubjectToSemester(i)
+                                            addSubjectToSemester(semesterindex)
                                         }}>Add Subjects</Button>
                                         {
-                                            x.subjects ? x.subjects.map((a, i) => {
-                                                return <Flex flexDirection='row' gap={10} key={i}>
+                                            semester.subjects ? semester.subjects.map((a, subjectindex) => {
+                                                return <Flex flexDirection='row' gap={10} key={subjectindex}>
                                                     <div className='w-100'>
                                                         <InputLabel className='m-1 text-start'>Subject Name</InputLabel>
                                                         <TextField
@@ -76,9 +94,9 @@ const HomeComponent = () => {
                                                             variant="outlined"
                                                             type="text"
                                                             name='subjectname'
-                                                            value={formik.values.credithours}
+                                                            value={a.subjectname}
                                                             fullWidth
-                                                            onChange={formik.handleChange}
+                                                            onChange={(x) => setSubjectName(a, x.target.value)}
                                                         />
                                                     </div>
                                                     <div className='w-100'>
@@ -87,8 +105,8 @@ const HomeComponent = () => {
                                                             fullWidth
                                                             label="Grade"
                                                             labelId="grade"
-                                                            value={formik.values.grade}
-                                                            onChange={formik.handleChange}
+                                                            value={a.grade}
+                                                            onChange={(x) => setSubjectGrade(a, x.target.value)}
                                                             name="grade"
                                                         >
                                                             {grades.map((x) => (
