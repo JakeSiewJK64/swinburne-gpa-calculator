@@ -17,7 +17,8 @@ const IntroductionDialog = () => {
             <DialogContent>
                 <DialogContentText>
                     Hi! This application is not OFFICIAL. It is made to make calculating Swinburne CGPAs easier rather than
-                    manual math. This is just a pet project written in React.
+                    manual math. This is just a pet project written in React. Information about calculating the CGPA can be found&nbsp;
+                    <a href="https://www.swinburneonline.edu.au/future-students/graduation-beyond/grade-point-average">here</a>.
                 </DialogContentText>
             </DialogContent>
             <DialogActions>

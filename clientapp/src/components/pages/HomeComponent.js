@@ -16,6 +16,7 @@ const HomeComponent = () => {
         { "grade": "D", "value": 3, "fullname": "Distinction" },
         { "grade": "C", "value": 2, "fullname": "Credit" },
         { "grade": "P", "value": 1, "fullname": "Pass" },
+        { "grade": "N", "value": 0, "fullname": "Fail" },
     ];
 
     const processCGPA = () => {
