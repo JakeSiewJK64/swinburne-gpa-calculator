@@ -10,6 +10,7 @@ const HomeComponent = () => {
     const [creditHours, setCredithours] = useState(12.5);
     const [results, setResults] = useState({});
     const [lockCreditHours, setLockCreditHours] = useState(true);
+    const [defaultNumberOfSubjects, setDefaultNumberOfSubjects] = useState(4);
 
     const grades = [
         { "grade": "HD", "value": 4, "fullname": "High Distinction" },
@@ -81,6 +82,20 @@ const HomeComponent = () => {
         setResults(results);
     }
 
+    const addSemester = () => {
+        let newSemester = {};
+        newSemester.subjects = [];
+
+        for (let i = 0; i < defaultNumberOfSubjects; i++) {
+            newSemester.subjects.push({
+                subjectname: "",
+                grade: grades[0].value
+            });
+        }
+
+        setSemesters(oldArray => [...oldArray, newSemester]);
+    }
+
     return (
         <>
             <IntroductionDialog />
@@ -90,7 +105,6 @@ const HomeComponent = () => {
                     <Flex flexDirection='row' gap={10}>
                         <TextField
                             helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd August 2022"
-                            label="Credit Hours"
                             variant="outlined"
                             type="number"
                             name='credithours'
@@ -100,14 +114,25 @@ const HomeComponent = () => {
                             onChange={(x) => setCredithours(x.target.value)}
                         />
                         <Switch
+                            className='mt-2'
                             checked={!lockCreditHours}
                             onChange={() => setLockCreditHours(!lockCreditHours)}
                         />
                     </Flex>
+                    <InputLabel className='m-1 mt-4 text-start'>Default Number of Subjects</InputLabel>
+                    <TextField
+                        helperText="Default number of subjects you take. Will auto generate when you add a new semester. This you can change..."
+                        variant="outlined"
+                        type="number"
+                        name='defaultnumberofsubjects'
+                        fullWidth
+                        value={defaultNumberOfSubjects}
+                        onChange={(x) => setDefaultNumberOfSubjects(x.target.value)}
+                    />
                 </div>
                 <div className='w-100 d-flex'>
                     <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
-                        setSemesters(oldArray => [...oldArray, {}])
+                        addSemester()
                     }}>Add Semester</Button>
                 </div>
                 {
