@@ -89,7 +89,7 @@ const HomeComponent = () => {
                     <InputLabel className='m-1 mt-4 text-start'>Input Credit Hours</InputLabel>
                     <Flex flexDirection='row' gap={10}>
                         <TextField
-                            helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd October 2022"
+                            helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd August 2022"
                             label="Credit Hours"
                             variant="outlined"
                             type="number"
