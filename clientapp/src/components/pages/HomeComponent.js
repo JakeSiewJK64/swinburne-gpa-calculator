@@ -1,13 +1,14 @@
 import { Select, MenuItem, InputLabel, TextField, Button, Switch } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
+import IntroductionDialog from './IntroductionDialog';
 
 const HomeComponent = () => {
 
     const [semesters, setSemesters] = useState([]);
     const [creditHours, setCredithours] = useState(12.5);
     const [results, setResults] = useState({});
-    const [lockCreditHours, setLockCreditHours] = useState(true);
+    const [lockCreditHours, setLockCreditHours] = useState(true);    
 
     const grades = [
         { "grade": "HD", "value": 4, "fullname": "High Distinction" },
@@ -75,6 +76,7 @@ const HomeComponent = () => {
 
     return (
         <>
+            <IntroductionDialog />
             <div className="m-2">
                 <div className='w-100'>
                     <InputLabel className='m-1 mt-4 text-start'>Input Credit Hours</InputLabel>
