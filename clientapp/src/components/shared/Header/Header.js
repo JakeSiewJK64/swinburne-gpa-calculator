@@ -3,7 +3,7 @@ import './Header.css';
 
 const HeaderComponent = () => {
     return (
-        <AppBar position="fixed" style={{ "background": "rgba(255,255,255,0.7)", "backdrop-filter": "blur(20px)", "maxHeight":"100px" }}>
+        <AppBar position="fixed" style={{ "background": "rgba(255,255,255,0.7)", "backdropFilter": "blur(20px)", "maxHeight":"100px" }}>
             <Toolbar>
                 <Typography
                     variant="h6"
