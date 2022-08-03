@@ -1,4 +1,4 @@
-import { Select, MenuItem, InputLabel, TextField, Button, Switch } from '@mui/material';
+import { Select, MenuItem, InputLabel, TextField, Button, Switch, Paper, Card } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
 import minus from '../../assets/img/minus.svg';
@@ -97,7 +97,7 @@ const HomeComponent = () => {
     }
 
     return (
-        <>
+        <Paper>
             <IntroductionDialog />
             <div className="m-2">
                 <div className='w-100'>
@@ -138,7 +138,7 @@ const HomeComponent = () => {
                 {
                     semesters.length > 0 ? semesters.map((semester, semesterindex) => {
                         return (
-                            <div className='card my-3' key={semesterindex}>
+                            <Card className='my-3' key={semesterindex}>
                                 <h3>Semester {semesterindex + 1}</h3>
                                 <Flex flexDirection='column' gap={10} className='m-2'>
                                     <Flex flexDirection='row' gap={10}>
@@ -187,7 +187,7 @@ const HomeComponent = () => {
                                             <></>
                                     }
                                 </Flex>
-                            </div>
+                            </Card>
                         );
                     }) : <p>Start by Creating a Semester</p>
                 }
@@ -227,7 +227,7 @@ const HomeComponent = () => {
                         <></>
                 }
             </div>
-        </>
+        </Paper>
     )
 }
 
