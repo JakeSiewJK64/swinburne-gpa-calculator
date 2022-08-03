@@ -5,6 +5,7 @@ import minus from '../../assets/img/minus.svg';
 import IntroductionDialog from './IntroductionDialog';
 import malaysia from '../../assets/img/malaysia.png';
 import australia from '../../assets/img/australia.png';
+import SharedAlertDialog from '../shared/SharedAlertDialog/SharedAlertDialog';
 
 const HomeComponent = () => {
 
@@ -13,9 +14,11 @@ const HomeComponent = () => {
     const [results, setResults] = useState({});
     const [lockCreditHours, setLockCreditHours] = useState(true);
     const [format, setformat] = useState("australian");
+    const [userSelect, setuserSelect] = useState("australian");
+    const [alertReset, setAlertReset] = useState(false);
     const [defaultNumberOfSubjects, setDefaultNumberOfSubjects] = useState(4);
 
-    let isAustralia = format === "australian"
+    let isAustralia = format === "australian";
 
     const formats = [
         { "name": "Australian", "value": "australian" },
@@ -108,9 +111,31 @@ const HomeComponent = () => {
         setSemesters(oldArray => [...oldArray, newSemester]);
     }
 
+    const handleOK = () => {
+        setformat(userSelect);
+        setResults();
+        setAlertReset(false);
+    }
+
+    const handleCancel = () => {
+        setAlertReset(false);
+    }
+
+    const toggleFormat = (value) => {
+        setuserSelect(value);
+        setAlertReset(true);
+    }
+
     return (
         <Paper>
             <IntroductionDialog />
+            <SharedAlertDialog
+                title="Change GPA Format"
+                handleOK={handleOK}
+                message="Are you sure you want to change gpa format? Doing so will reset your output. Proceed?"
+                handleCancel={handleCancel}
+                open={alertReset}
+            />
             <div className="m-2">
                 <div className='w-100'>
                     <InputLabel className='m-1 text-start'>Input Credit Hours</InputLabel>
@@ -153,8 +178,8 @@ const HomeComponent = () => {
                                 label="Format"
                                 labelId="format"
                                 value={format}
-                                onChange={(x) => { setformat(x.target.value) }}
-                                name="grade"
+                                onChange={(x) => { toggleFormat(x.target.value) }}
+                                name="format"
                             >
                                 {
                                     formats.map(myFormat => {
@@ -243,7 +268,7 @@ const HomeComponent = () => {
                     </div>
                 </div>
                 {
-                    results.data ?
+                    results && results.data ?
                         <>
                             <Flex flexDirection='row'>
                                 <strong>GPA Format: &nbsp;</strong>
