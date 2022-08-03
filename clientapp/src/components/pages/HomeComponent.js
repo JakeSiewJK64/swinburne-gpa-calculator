@@ -116,6 +116,7 @@ const HomeComponent = () => {
     const handleOK = () => {
         setformat(userSelect);
         setResults();
+        resetStatistics();
         setAlertReset(false);
     }
 
@@ -174,7 +175,6 @@ const HomeComponent = () => {
                         <div className='w-100'>
                             <InputLabel className='m-1 mt-4 text-start'>Format</InputLabel>
                             <Select
-
                                 required
                                 fullWidth
                                 label="Format"
