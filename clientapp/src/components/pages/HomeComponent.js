@@ -17,6 +17,8 @@ const HomeComponent = () => {
     const [userSelect, setuserSelect] = useState("australian");
     const [alertReset, setAlertReset] = useState(false);
     const [defaultNumberOfSubjects, setDefaultNumberOfSubjects] = useState(4);
+    const [showSubjectName, setShowSubjectName] = useState(true);
+    const [showGradeValue, setShowGradeValue] = useState(false);
 
     let isAustralia = format === "australian";
 
@@ -193,6 +195,22 @@ const HomeComponent = () => {
                             <FormHelperText>Toggle between Australian or Malaysian format for GPA value.</FormHelperText>
                         </div>
                     </Flex>
+                    <Flex flexDirection='row'>
+                        <p className='pt-3 ms-auto'>Show Subject Name</p>
+                        <Switch
+                            className='mt-2'
+                            checked={showSubjectName}
+                            onChange={() => setShowSubjectName(!showSubjectName)}
+                        />
+                    </Flex>
+                    <Flex flexDirection='row'>
+                        <p className='pt-3 ms-auto'>Show Grade Value</p>
+                        <Switch
+                            className='mt-2'
+                            checked={showGradeValue}
+                            onChange={() => setShowGradeValue(!showGradeValue)}
+                        />
+                    </Flex>
                 </div>
                 <div className='w-100 d-flex'>
                     <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
@@ -214,25 +232,25 @@ const HomeComponent = () => {
                                     {
                                         semester.subjects ? semester.subjects.map((a, subjectindex) => {
                                             return <Flex flexDirection='row' gap={10} key={subjectindex}>
-                                                <div className='w-100'>
-                                                    <InputLabel className='m-1 text-start'>Subject Name</InputLabel>
-                                                    <TextField
-                                                        required
-                                                        label="Subject Name"
-                                                        variant="outlined"
-                                                        type="text"
-                                                        name='subjectname'
-                                                        value={a.subjectname}
-                                                        fullWidth
-                                                        onChange={(x) => setSubjectName(a, x.target.value)}
-                                                    />
-                                                </div>
+                                                {
+                                                    showSubjectName ? <div className='w-100'>
+                                                        <InputLabel className='m-1 text-start'>Subject Name</InputLabel>
+                                                        <TextField
+                                                            required
+                                                            variant="outlined"
+                                                            type="text"
+                                                            name='subjectname'
+                                                            value={a.subjectname}
+                                                            fullWidth
+                                                            onChange={(x) => setSubjectName(a, x.target.value)}
+                                                        />
+                                                    </div> : <></>
+                                                }
                                                 <div className='w-100'>
                                                     <InputLabel className='m-1 text-start'>Select Grade</InputLabel>
                                                     <Select
                                                         required
                                                         fullWidth
-                                                        label="Grade"
                                                         labelId="grade"
                                                         value={a.grade}
                                                         onChange={(x) => setSubjectGrade(a, x.target.value)}
@@ -245,6 +263,22 @@ const HomeComponent = () => {
                                                         ))}
                                                     </Select>
                                                 </div>
+                                                {
+                                                    showGradeValue ?
+                                                        <div className='w-100'>
+                                                            <InputLabel className='m-1 text-start'>Grade Value</InputLabel>
+                                                            <TextField
+                                                                required
+                                                                variant="outlined"
+                                                                type="text"
+                                                                disabled
+                                                                name='gradevalue'
+                                                                value={a.grade}
+                                                                fullWidth
+                                                                onChange={(x) => { }}
+                                                            />
+                                                        </div> : <></>
+                                                }
                                                 <img src={minus} alt="minus" style={{ width: "20px", cursor: "pointer" }} className="pt-4 removesubject" onClick={() => removeSubject(semester, subjectindex)} />
                                             </Flex>
                                         }) :
