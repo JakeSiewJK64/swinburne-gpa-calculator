@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import Flex from "@react-css/flex";
+import sun from '../../../assets/img/sun.svg';
 
 const HeaderComponent = ({ setTheme }) => {
     return (
@@ -14,10 +15,10 @@ const HeaderComponent = ({ setTheme }) => {
                     >
                         Unofficial Swinburne GPA Calculator
                     </Typography>
-                    <Button onClick={() => setTheme()} className="ms-auto">Darkmode</Button>
+                    <img src={sun} alt="sun" onClick={() => setTheme()} className="ms-auto" style={{ width: "30px", cursor: "pointer" }} />
                 </Flex>
             </Toolbar>
-        </AppBar>
+        </AppBar >
     );
 }
 
