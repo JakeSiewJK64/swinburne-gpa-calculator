@@ -6,6 +6,7 @@ import SharedAlertDialog from '../../shared/SharedAlertDialog/SharedAlertDialog'
 import minus from '../../../assets/img/minus.svg';
 import malaysia from '../../../assets/img/malaysia.png';
 import australia from '../../../assets/img/australia.png';
+import komaruman from '../../../assets/img/kaisya_komaru_man.png'
 import './HomeComponent.css';
 
 const HomeComponent = () => {
@@ -292,7 +293,13 @@ const HomeComponent = () => {
                                 </Flex>
                             </Card>
                         );
-                    }) : <p>Start by Creating a Semester</p>
+                    }) :
+                        <Flex flexDirection='column'>
+                            <img src={komaruman} className="mx-auto empty-container" alt="alternative" />
+                            <strong>
+                                <h4>You currently have no semesters! Start by Creating a Semester</h4>
+                            </strong>
+                        </Flex>
                 }
                 <div className='d-flex flex-row'>
                     <div className='ms-auto'>

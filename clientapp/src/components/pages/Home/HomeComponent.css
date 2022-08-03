@@ -1,3 +1,7 @@
 .format-container {
     width: 30px;
 }
+
+.empty-container {
+    width: 200px;
+}
