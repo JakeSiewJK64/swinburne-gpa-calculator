@@ -14,6 +14,9 @@ const HeaderComponent = ({ setTheme }) => {
                         component="div"
                     >
                         Unofficial Swinburne GPA Calculator
+                        <sup className="rounded bg-primary text-white p-1 m-1">
+                            beta
+                        </sup>
                     </Typography>
                     <img src={sun} alt="sun" onClick={() => setTheme()} className="ms-auto" style={{ width: "30px", cursor: "pointer" }} />
                 </Flex>

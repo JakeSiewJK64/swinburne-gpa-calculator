@@ -1,8 +1,10 @@
-import { Select, MenuItem, InputLabel, TextField, Button, Switch, Paper, Card } from '@mui/material';
+import { Select, MenuItem, InputLabel, TextField, Button, Switch, Paper, Card, FormHelperText } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
 import minus from '../../assets/img/minus.svg';
 import IntroductionDialog from './IntroductionDialog';
+import malaysia from '../../assets/img/malaysia.png';
+import australia from '../../assets/img/australia.png';
 
 const HomeComponent = () => {
 
@@ -10,14 +12,24 @@ const HomeComponent = () => {
     const [creditHours, setCredithours] = useState(12.5);
     const [results, setResults] = useState({});
     const [lockCreditHours, setLockCreditHours] = useState(true);
+    const [format, setformat] = useState("australian");
     const [defaultNumberOfSubjects, setDefaultNumberOfSubjects] = useState(4);
+
+    let isAustralia = format === "australian"
+
+    const formats = [
+        { "name": "Australian", "value": "australian" },
+        { "name": "Malaysian", "value": "malaysian" },
+    ]
 
     const grades = [
         { "grade": "HD", "value": 4, "fullname": "High Distinction" },
-        { "grade": "D", "value": 3, "fullname": "Distinction" },
-        { "grade": "C", "value": 2, "fullname": "Credit" },
-        { "grade": "P", "value": 1, "fullname": "Pass" },
-        { "grade": "N", "value": 0, "fullname": "Fail" },
+        { "grade": "D", "value": isAustralia ? 3 : 3.67, "fullname": "Distinction" },
+        { "grade": "C", "value": isAustralia ? 2 : 3, "fullname": "Credit" },
+        { "grade": "P", "value": isAustralia ? 1 : 2.33, "fullname": "Pass" },
+        { "grade": "N", "value": isAustralia ? 0 : 1.67, "fullname": "Fail (45 -  49)" },
+        { "grade": "N", "value": isAustralia ? 0 : 1.33, "fullname": "Fail (30 - 44)" },
+        { "grade": "N", "value": 0, "fullname": "Fail (0 - 29)" },
     ];
 
     const processCGPA = () => {
@@ -119,16 +131,43 @@ const HomeComponent = () => {
                             onChange={() => setLockCreditHours(!lockCreditHours)}
                         />
                     </Flex>
-                    <InputLabel className='m-1 mt-4 text-start'>Default Number of Subjects</InputLabel>
-                    <TextField
-                        helperText="Default number of subjects you take. Will auto generate when you add a new semester. This you can change..."
-                        variant="outlined"
-                        type="number"
-                        name='defaultnumberofsubjects'
-                        fullWidth
-                        value={defaultNumberOfSubjects}
-                        onChange={(x) => setDefaultNumberOfSubjects(x.target.value)}
-                    />
+                    <Flex flexDirection='row' gap={10}>
+                        <div className='w-100'>
+                            <InputLabel className='m-1 mt-4 text-start'>Default Number of Subjects</InputLabel>
+                            <TextField
+                                helperText="Default number of subjects you take. Will auto generate when you add a new semester. This you can change..."
+                                variant="outlined"
+                                type="number"
+                                name='defaultnumberofsubjects'
+                                fullWidth
+                                value={defaultNumberOfSubjects}
+                                onChange={(x) => setDefaultNumberOfSubjects(x.target.value)}
+                            />
+                        </div>
+                        <div className='w-100'>
+                            <InputLabel className='m-1 mt-4 text-start'>Format</InputLabel>
+                            <Select
+
+                                required
+                                fullWidth
+                                label="Format"
+                                labelId="format"
+                                value={format}
+                                onChange={(x) => { setformat(x.target.value) }}
+                                name="grade"
+                            >
+                                {
+                                    formats.map(myFormat => {
+                                        return (
+                                            <MenuItem key={myFormat.name} value={myFormat.value}>{myFormat.name}</MenuItem>
+                                        )
+                                    })
+                                }
+
+                            </Select>
+                            <FormHelperText>Toggle between Australian or Malaysian format for GPA value.</FormHelperText>
+                        </div>
+                    </Flex>
                 </div>
                 <div className='w-100 d-flex'>
                     <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
@@ -174,8 +213,8 @@ const HomeComponent = () => {
                                                         onChange={(x) => setSubjectGrade(a, x.target.value)}
                                                         name="grade"
                                                     >
-                                                        {grades.map((x) => (
-                                                            <MenuItem value={x.value} key={x.value}>
+                                                        {grades.map((x, gradeIndex) => (
+                                                            <MenuItem value={x.value} key={gradeIndex}>
                                                                 {x.fullname} ({x.grade})
                                                             </MenuItem>
                                                         ))}
@@ -206,6 +245,11 @@ const HomeComponent = () => {
                 {
                     results.data ?
                         <>
+                            <Flex flexDirection='row'>
+                                <strong>GPA Format: &nbsp;</strong>
+                                <p> {isAustralia ? 'Australia' : 'Malaysia'} </p>
+                                <img src={isAustralia ? australia : malaysia} style={{ width: "30px" }} alt="flag" className='m-1 pb-2' />
+                            </Flex>
                             <Flex flexDirection='row'>
                                 <strong>Credit Hours: &nbsp;</strong>
                                 <p>{creditHours}</p>
