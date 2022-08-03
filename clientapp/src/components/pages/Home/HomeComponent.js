@@ -1,11 +1,12 @@
 import { Select, MenuItem, InputLabel, TextField, Button, Switch, Paper, Card, FormHelperText } from '@mui/material';
 import Flex from '@react-css/flex';
 import { useState } from 'react';
-import minus from '../../assets/img/minus.svg';
-import IntroductionDialog from './IntroductionDialog';
-import malaysia from '../../assets/img/malaysia.png';
-import australia from '../../assets/img/australia.png';
-import SharedAlertDialog from '../shared/SharedAlertDialog/SharedAlertDialog';
+import IntroductionDialog from '../IntroductionDialog';
+import SharedAlertDialog from '../../shared/SharedAlertDialog/SharedAlertDialog';
+import minus from '../../../assets/img/minus.svg';
+import malaysia from '../../../assets/img/malaysia.png';
+import australia from '../../../assets/img/australia.png';
+import './HomeComponent.css';
 
 const HomeComponent = () => {
 
@@ -95,8 +96,9 @@ const HomeComponent = () => {
 
     const resetStatistics = () => {
         setSemesters([]);
-        results.data = undefined;
+        results.data = null;
         setResults(results);
+        addSemester();
     }
 
     const addSemester = () => {
@@ -186,7 +188,10 @@ const HomeComponent = () => {
                                 {
                                     formats.map(myFormat => {
                                         return (
-                                            <MenuItem key={myFormat.name} value={myFormat.value}>{myFormat.name}</MenuItem>
+                                            <MenuItem key={myFormat.name} value={myFormat.value}>
+                                                <img src={myFormat.value === "australian" ? australia : malaysia} alt="country_flag" className='format-container me-1' />
+                                                {myFormat.name}
+                                            </MenuItem>
                                         )
                                     })
                                 }

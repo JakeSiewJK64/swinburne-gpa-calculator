@@ -1,5 +1,5 @@
 import './App.css';
-import HomeComponent from './components/pages/HomeComponent';
+import HomeComponent from './components/pages/Home/HomeComponent';
 import HeaderComponent from './components/shared/Header/Header';
 import Footer from './components/shared/Footer/Footer';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
