@@ -4,7 +4,7 @@ import sun from '../../../assets/img/sun.svg';
 
 const HeaderComponent = ({ setTheme }) => {
     return (
-        <AppBar position="fixed" style={{ "background": "rgba(255,255,255,0.7)", "backdropFilter": "blur(20px)", "maxHeight": "100px" }}>
+        <AppBar position="sticky" style={{ "background": "rgba(255,255,255,0.7)", "backdropFilter": "blur(20px)", "maxHeight": "100px" }}>
             <Toolbar>
                 <Flex flexDirection="row" className="w-100">
                     <Typography

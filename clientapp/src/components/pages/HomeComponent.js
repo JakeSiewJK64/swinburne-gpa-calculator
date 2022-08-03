@@ -101,7 +101,7 @@ const HomeComponent = () => {
             <IntroductionDialog />
             <div className="m-2">
                 <div className='w-100'>
-                    <InputLabel className='m-1 mt-4 text-start'>Input Credit Hours</InputLabel>
+                    <InputLabel className='m-1 text-start'>Input Credit Hours</InputLabel>
                     <Flex flexDirection='row' gap={10}>
                         <TextField
                             helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd August 2022"

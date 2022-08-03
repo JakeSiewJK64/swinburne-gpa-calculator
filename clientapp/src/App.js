@@ -25,7 +25,7 @@ function App() {
       <CssBaseline />
       <div className="App">
         <HeaderComponent setTheme={setTheme} />
-        <div className="card m-2 mt-5">
+        <div className="card">
           <HomeComponent />
         </div>
         <Footer />
