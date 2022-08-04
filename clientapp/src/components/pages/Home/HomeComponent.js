@@ -183,6 +183,7 @@ const HomeComponent = () => {
                                 required
                                 fullWidth
                                 label="Format"
+                                style={{ maxHeight: "55px" }}
                                 labelId="format"
                                 value={format}
                                 onChange={(x) => { toggleFormat(x.target.value) }}
