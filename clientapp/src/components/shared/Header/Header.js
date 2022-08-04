@@ -16,7 +16,7 @@ const HeaderComponent = ({ setTheme }) => {
     const languages = [
         { language: "English", value: "en", img: uk },
         { language: "日本語", value: "jp", img: japan },
-        { language: "中文", value: "cn", img: china },
+        { language: "简体中文", value: "cn", img: china },
     ]
 
     const swapLanguage = (value) => {
