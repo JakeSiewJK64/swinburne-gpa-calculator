@@ -5,6 +5,7 @@ import i18n from "../../../utils/i18n";
 import sun from '../../../assets/img/sun.svg';
 import japan from '../../../assets/img/country_flags/japan.png';
 import uk from '../../../assets/img/country_flags/uk.png';
+import china from '../../../assets/img/country_flags/china.png';
 
 const HeaderComponent = ({ setTheme }) => {
 
@@ -13,8 +14,9 @@ const HeaderComponent = ({ setTheme }) => {
     const [language, setLanguage] = useState(lang ? lang : 'en')
 
     const languages = [
-        { language: "english", value: "en", img: uk },
+        { language: "English", value: "en", img: uk },
         { language: "日本語", value: "jp", img: japan },
+        { language: "中文", value: "cn", img: china },
     ]
 
     const swapLanguage = (value) => {

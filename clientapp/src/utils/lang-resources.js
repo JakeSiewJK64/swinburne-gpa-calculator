@@ -1,13 +1,12 @@
 const LanguageResource = {
     en: {
         translation: {
-            "IntroductionMessage": `
-            Hi! This application is not OFFICIAL. It is made to make calculating Swinburne CGPAs easier rather than manual math. This is just a pet project written in React. `,
+            "IntroductionMessage": `Hi! This application is not OFFICIAL. It is made to make calculating Swinburne CGPAs easier rather than manual math. This is just a pet project written in React.`,
             "EmptySemester": "You currently have no semesters! Start by Creating a Semester.",
             "AddSemester": "Add Semester",
             "ShowGradeValue": "Show Grade Value",
             "ShowSubjectName": "Show Subject Value",
-            "Format": "Format",
+            "Format": "GPA Format",
             "ToggleFormatHelperText": "Toggle between Australian or Malaysian format for GPA value.",
             "DefaultNoSubjectsLabel": "Default Number of Subjects",
             "DefaultNoSubjectsHelperText": "Default number of subjects you take. Will auto generate when you add a new semester. This you can change...",
@@ -33,6 +32,39 @@ const LanguageResource = {
             "DoNotRemind": "Don't Remind Me Again",
         }
     },
+    cn: {
+        translation: {
+            "IntroductionMessage": `嗨! 所显示的网站是为了Swiburne大学的学生以及老师们容易计算学生GPA分数而制造。Unofficial Swinburne CGPA Calculator是由React Framework而建成的。`,
+            "EmptySemester": "正在无学期，请加入新学期.",
+            "AddSemester": "新学期",
+            "ShowGradeValue": "显示成绩",
+            "ShowSubjectName": "显示科目",
+            "Format": "GPA格式",
+            "ToggleFormatHelperText": "转换GPA格式.",
+            "DefaultNoSubjectsLabel": "科目",
+            "DefaultNoSubjectsHelperText": "正在所拿的科目总数",
+            "CreditHours": "学分",
+            "DisclaimerCreditHours": "*注意: 请别编辑学分除非Swinburne大学通知学分有任何的改变.",
+            "Australia": "澳大利亚",
+            "Malaysian": "马来西亚",
+            "AddSubjects": "新科目",
+            "Semester": "学期",
+            "RemoveSemester": "删除学期",
+            "SubjectName": "科目主题",
+            "SelectGrade": "成绩选择",
+            "Reset": "重新",
+            "ProcessGPA": "计算GPA",
+            "TotalCreditHours": "学分总数",
+            "TotalGPA": "GPA总数",
+            "TotalCredit": "GPA总数",
+            "GradeValue": "分数",
+            "ChangeFormatDialogTitle": "注意:正在转换GPA格式",
+            "ChangeFormatDialogMessage": "确定转换GPA格式吗?这样做会影响GPA的计算。",
+            "OK": "好的",
+            "Cancel": "取消",
+            "DoNotRemind": "以后便通知我",
+        }
+    },
     jp: {
         translation: {
             "EmptySemester": "まだ学期が入っていない。",
@@ -41,7 +73,7 @@ const LanguageResource = {
             "AddSemester": "新しい学期",
             "ShowGradeValue": "成績を表示",
             "ShowSubjectName": "科目を表示",
-            "Format": "フォーマット",
+            "Format": "GPAフォーマット",
             "ToggleFormatHelperText": "GPAフォーマットを変わる",
             "DefaultNoSubjectsLabel": "科目の数",
             "DefaultNoSubjectsHelperText": "新しい学期を作る時の科目の数",

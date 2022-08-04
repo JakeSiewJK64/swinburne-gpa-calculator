@@ -320,8 +320,8 @@ const HomeComponent = () => {
                     results && results.data ?
                         <>
                             <Flex flexDirection='row'>
-                                <strong>GPA {t('Format')}: &nbsp;</strong>
-                                <p> {isAustralia ? 'Australia' : 'Malaysia'} </p>
+                                <strong>{t('Format')}: &nbsp;</strong>
+                                <p> {isAustralia ? t('Australia') : t('Malaysia')} </p>
                                 <img src={isAustralia ? australia : malaysia} style={{ width: "30px" }} alt="flag" className='m-1 pb-2' />
                             </Flex>
                             <Flex flexDirection='row'>
