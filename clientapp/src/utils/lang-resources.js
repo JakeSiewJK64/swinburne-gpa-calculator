@@ -34,7 +34,7 @@ const LanguageResource = {
     },
     cn: {
         translation: {
-            "IntroductionMessage": `嗨! 所显示的网站是为了Swiburne大学的学生以及老师们容易计算学生GPA分数而制造。这个网站是由React Framework而建成的。感谢使用Unofficial Swinburne CGPA Calculator。`,
+            "IntroductionMessage": `嗨! 所显示的网站是为了Swiburne大学的学生以及老师们容易计算学生GPA分数而制造。这个网站是由React Framework而建成的。如果发现网站有问题，请联络joekanesiew@outlook.com。感谢使用Unofficial Swinburne CGPA Calculator。`,
             "EmptySemester": "正在无学期，请加入新学期.",
             "AddSemester": "新学期",
             "ShowGradeValue": "显示成绩",
@@ -68,7 +68,7 @@ const LanguageResource = {
     jp: {
         translation: {
             "EmptySemester": "まだ学期が入っていない。",
-            "IntroductionMessage": "どうも。このサイトは自分の暇で作ってみたプロジェクト。SwinburneのGPAを簡単に計算するために作ってきた。このサイトの使ったフレームワークはReactです。どうぞ使ってください。このサイトを使ってくれてありがとうございます。",
+            "IntroductionMessage": "どうも。このサイトは自分の暇で作ってみたプロジェクト。SwinburneのGPAを簡単に計算するために作ってきた。このサイトの使ったフレームワークはReactです。どうぞ使ってください。バグがあったらjoekanesiew@outlook.comにメールをしてお願いします。このサイトを使ってくれてありがとうございます。",
             "DoNotRemind": "二度と表示しない",
             "AddSemester": "新しい学期",
             "ShowGradeValue": "成績を表示",
