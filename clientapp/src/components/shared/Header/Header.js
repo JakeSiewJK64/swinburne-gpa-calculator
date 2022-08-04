@@ -1,8 +1,10 @@
 import { AppBar, Toolbar, Typography, Select, MenuItem } from "@mui/material";
 import Flex from "@react-css/flex";
 import { useState } from "react";
-import sun from '../../../assets/img/sun.svg';
 import i18n from "../../../utils/i18n";
+import sun from '../../../assets/img/sun.svg';
+import japan from '../../../assets/img/country_flags/japan.png';
+import uk from '../../../assets/img/country_flags/uk.png';
 
 const HeaderComponent = ({ setTheme }) => {
 
@@ -11,8 +13,8 @@ const HeaderComponent = ({ setTheme }) => {
     const [language, setLanguage] = useState(lang ? lang : 'en')
 
     const languages = [
-        { language: "english", value: "en" },
-        { language: "日本語", value: "jp" },
+        { language: "english", value: "en", img: uk },
+        { language: "日本語", value: "jp", img: japan },
     ]
 
     const swapLanguage = (value) => {
@@ -38,6 +40,7 @@ const HeaderComponent = ({ setTheme }) => {
                     </Typography>
                     <Flex flexDirection="row" gap={10} className="ms-auto">
                         <Select
+                            style={{"maxHeight": "50px"}}
                             required
                             label="Format"
                             labelId="format"
@@ -49,6 +52,7 @@ const HeaderComponent = ({ setTheme }) => {
                                 languages.map(language => {
                                     return (
                                         <MenuItem key={language.value} value={language.value}>
+                                            <img src={language.img} style={{ width: "30px" }} alt="country_flag" />&nbsp;
                                             {language.language}
                                         </MenuItem>
                                     )
