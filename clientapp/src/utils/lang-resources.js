@@ -38,7 +38,7 @@ const LanguageResource = {
             "EmptySemester": "正在无学期，请加入新学期.",
             "AddSemester": "新学期",
             "ShowGradeValue": "显示成绩",
-            "ShowSubjectName": "显示科目",
+            "ShowSubjectName": "显示科目主题",
             "Format": "GPA格式",
             "ToggleFormatHelperText": "转换GPA格式.",
             "DefaultNoSubjectsLabel": "科目",
@@ -62,7 +62,7 @@ const LanguageResource = {
             "ChangeFormatDialogMessage": "确定转换GPA格式吗?这样做会影响GPA的计算。",
             "OK": "好的",
             "Cancel": "取消",
-            "DoNotRemind": "以后便通知我",
+            "DoNotRemind": "以后别通知我",
         }
     },
     jp: {
