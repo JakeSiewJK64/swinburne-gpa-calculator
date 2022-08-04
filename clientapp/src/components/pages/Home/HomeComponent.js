@@ -27,8 +27,8 @@ const HomeComponent = () => {
     let isAustralia = format === "australian";
 
     const formats = [
-        { "name": "Australian", "value": "australian" },
-        { "name": "Malaysian", "value": "malaysian" },
+        { "name": t('Australia'), "value": "australian" },
+        { "name": t('Malaysian'), "value": "malaysian" },
     ]
 
     const grades = [
@@ -146,10 +146,10 @@ const HomeComponent = () => {
             />
             <div className="m-2">
                 <div className='w-100'>
-                    <InputLabel className='m-1 text-start'>Input Credit Hours</InputLabel>
+                    <InputLabel className='m-1 text-start'>{t('CreditHours')}</InputLabel>
                     <Flex flexDirection='row' gap={10}>
                         <TextField
-                            helperText="*Disclaimer: Do not change this field unless Swinburne has made any explicit changes to all subjects' credit points. Otherwise, the credit points will remain as 12.5 as of 2nd August 2022"
+                            helperText={t('DisclaimerCreditHours')}
                             variant="outlined"
                             type="number"
                             name='credithours'
@@ -166,9 +166,9 @@ const HomeComponent = () => {
                     </Flex>
                     <Flex flexDirection='row' gap={10}>
                         <div className='w-100'>
-                            <InputLabel className='m-1 mt-4 text-start'>Default Number of Subjects</InputLabel>
+                            <InputLabel className='m-1 mt-4 text-start'>{t('DefaultNoSubjectsLabel')}</InputLabel>
                             <TextField
-                                helperText="Default number of subjects you take. Will auto generate when you add a new semester. This you can change..."
+                                helperText={t('DefaultNoSubjectsHelperText')}
                                 variant="outlined"
                                 type="number"
                                 name='defaultnumberofsubjects'
@@ -178,7 +178,7 @@ const HomeComponent = () => {
                             />
                         </div>
                         <div className='w-100'>
-                            <InputLabel className='m-1 mt-4 text-start'>Format</InputLabel>
+                            <InputLabel className='m-1 mt-4 text-start'>{t('Format')}</InputLabel>
                             <Select
                                 required
                                 fullWidth
@@ -201,11 +201,11 @@ const HomeComponent = () => {
                                 }
 
                             </Select>
-                            <FormHelperText>Toggle between Australian or Malaysian format for GPA value.</FormHelperText>
+                            <FormHelperText>{t('ToggleFormatHelperText')}</FormHelperText>
                         </div>
                     </Flex>
                     <Flex flexDirection='row'>
-                        <p className='pt-3 ms-auto'>Show Subject Name</p>
+                        <p className='pt-3 ms-auto'>{t('ShowSubjectName')}</p>
                         <Switch
                             className='mt-2'
                             checked={showSubjectName}
@@ -213,7 +213,7 @@ const HomeComponent = () => {
                         />
                     </Flex>
                     <Flex flexDirection='row'>
-                        <p className='pt-3 ms-auto'>Show Grade Value</p>
+                        <p className='pt-3 ms-auto'>{t('ShowGradeValue')}</p>
                         <Switch
                             className='mt-2'
                             checked={showGradeValue}
@@ -224,26 +224,26 @@ const HomeComponent = () => {
                 <div className='w-100 d-flex'>
                     <Button className='m-1 ms-auto' variant='contained' onClick={_ => {
                         addSemester()
-                    }}>Add Semester</Button>
+                    }}>{t('AddSemester')}</Button>
                 </div>
                 {
                     semesters.length > 0 ? semesters.map((semester, semesterindex) => {
                         return (
                             <Card className='my-3' key={semesterindex}>
-                                <h3>Semester {semesterindex + 1}</h3>
+                                <h3>{t('Semester')} {semesterindex + 1}</h3>
                                 <Flex flexDirection='column' gap={10} className='m-2'>
                                     <Flex flexDirection='row' gap={10}>
                                         <Button className='ms-auto' variant='outlined' onClick={_ => {
                                             addSubjectToSemester(semesterindex)
-                                        }}>Add Subjects</Button>
-                                        <Button className='bg-danger text-white' variant="text" onClick={() => removeSemester(semesterindex)}>Remove Semester</Button>
+                                        }}>{t('AddSubjects')}</Button>
+                                        <Button className='bg-danger text-white' variant="text" onClick={() => removeSemester(semesterindex)}>{t('RemoveSemester')}</Button>
                                     </Flex>
                                     {
                                         semester.subjects ? semester.subjects.map((a, subjectindex) => {
                                             return <Flex flexDirection='row' gap={10} key={subjectindex}>
                                                 {
                                                     showSubjectName ? <div className='w-100'>
-                                                        <InputLabel className='m-1 text-start'>Subject Name</InputLabel>
+                                                        <InputLabel className='m-1 text-start'>{t('SubjectName')}</InputLabel>
                                                         <TextField
                                                             required
                                                             variant="outlined"
@@ -256,7 +256,7 @@ const HomeComponent = () => {
                                                     </div> : <></>
                                                 }
                                                 <div className='w-100'>
-                                                    <InputLabel className='m-1 text-start'>Select Grade</InputLabel>
+                                                    <InputLabel className='m-1 text-start'>{t('SelectGrade')}</InputLabel>
                                                     <Select
                                                         required
                                                         fullWidth
@@ -309,8 +309,8 @@ const HomeComponent = () => {
                         <Flex gap={10}>
                             {
                                 semesters.length > 0 ? <>
-                                    <Button className='bg-danger text-white' variant="text" onClick={() => resetStatistics()}>Reset</Button>
-                                    <Button className='bg-warning text-black' variant="text" onClick={() => { processCGPA() }}>Calculate CGPA</Button></> : <></>
+                                    <Button className='bg-danger text-white' variant="text" onClick={() => resetStatistics()}>{t('Reset')}</Button>
+                                    <Button className='bg-warning text-black' variant="text" onClick={() => { processCGPA() }}>{t('ProcessGPA')}</Button></> : <></>
                             }
 
                         </Flex>
@@ -320,20 +320,20 @@ const HomeComponent = () => {
                     results && results.data ?
                         <>
                             <Flex flexDirection='row'>
-                                <strong>GPA Format: &nbsp;</strong>
+                                <strong>GPA {t('Format')}: &nbsp;</strong>
                                 <p> {isAustralia ? 'Australia' : 'Malaysia'} </p>
                                 <img src={isAustralia ? australia : malaysia} style={{ width: "30px" }} alt="flag" className='m-1 pb-2' />
                             </Flex>
                             <Flex flexDirection='row'>
-                                <strong>Credit Hours: &nbsp;</strong>
+                                <strong>{t('CreditHours')}: &nbsp;</strong>
                                 <p>{creditHours}</p>
                             </Flex>
                             <Flex flexDirection='row'>
-                                <strong>Total GPA: &nbsp;</strong>
+                                <strong>{t('TotalGPA')}: &nbsp;</strong>
                                 <p>{results.data.totalGpa}</p>
                             </Flex>
                             <Flex flexDirection='row'>
-                                <strong>Total Credit Hours: &nbsp;</strong>
+                                <strong>{t('TotalCreditHours')}: &nbsp;</strong>
                                 <p>{results.data.totalCreditHours}</p>
                             </Flex>
                             <Flex flexDirection='row'>
