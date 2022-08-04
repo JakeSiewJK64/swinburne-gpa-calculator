@@ -36,7 +36,7 @@ const LanguageResource = {
             "DefaultNoSubjectsLabel": "科目の数",
             "DefaultNoSubjectsHelperText": "新しい学期を作る時の科目の数",
             "CreditHours": "単位",
-            "DisclaimerCreditHours": "*注意:Swinburne大学の科目の単位が変わらない限りこのフイールドを変わらないです下さい。",
+            "DisclaimerCreditHours": "*注意:Swinburne大学科目の単位が変わらない限りこのフイールドを編集しないで下さい。",
             "Australia": "オーストラリア",
             "Malaysian": "マレーシア",
             "AddSubjects": "新しい科目",
