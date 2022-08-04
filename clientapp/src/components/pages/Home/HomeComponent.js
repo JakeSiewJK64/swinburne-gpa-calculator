@@ -138,9 +138,9 @@ const HomeComponent = () => {
         <Paper>
             <IntroductionDialog />
             <SharedAlertDialog
-                title="Change GPA Format"
+                title={t('ChangeFormatDialogTitle')}
                 handleOK={handleOK}
-                message="Are you sure you want to change gpa format? Doing so will reset your output. Proceed?"
+                message={t('ChangeFormatDialogMessage')}
                 handleCancel={handleCancel}
                 open={alertReset}
             />
@@ -275,7 +275,7 @@ const HomeComponent = () => {
                                                 {
                                                     showGradeValue ?
                                                         <div className='w-100'>
-                                                            <InputLabel className='m-1 text-start'>Grade Value</InputLabel>
+                                                            <InputLabel className='m-1 text-start'>{t('GradeValue')}</InputLabel>
                                                             <TextField
                                                                 required
                                                                 variant="outlined"

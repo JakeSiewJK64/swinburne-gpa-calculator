@@ -1,9 +1,11 @@
 import { DialogTitle, Dialog, Button, DialogActions, DialogContentText, DialogContent } from '@mui/material';
 import anime from '../../../assets/img/anime.png';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const IntroductionDialog = () => {
 
+    const {t} = useTranslation();    
     const [openDialog, setOpenDialog] = useState(true);
     const dontRemind = () => {
         localStorage.setItem("remind", false);
@@ -16,17 +18,15 @@ const IntroductionDialog = () => {
             <DialogTitle>Unofficial Swinburne GPA Calculator</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Hi! This application is not OFFICIAL. It is made to make calculating Swinburne CGPAs easier rather than
-                    manual math. This is just a pet project written in React. Information about calculating the CGPA can be found&nbsp;
-                    <a href="https://www.swinburneonline.edu.au/future-students/graduation-beyond/grade-point-average">here</a>.
+                    {t('IntroductionMessage')}                    
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => setOpenDialog(false)} autoFocus>
-                    OK!
+                    {t('OK')}
                 </Button>
                 <Button onClick={() => dontRemind()} autoFocus variant="outlined">
-                    Don't Remind Me Again
+                    {t('DoNotRemind')}
                 </Button>
             </DialogActions>
         </Dialog>

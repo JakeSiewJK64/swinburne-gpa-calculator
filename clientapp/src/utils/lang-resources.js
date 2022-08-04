@@ -1,6 +1,8 @@
 const LanguageResource = {
     en: {
         translation: {
+            "IntroductionMessage": `
+            Hi! This application is not OFFICIAL. It is made to make calculating Swinburne CGPAs easier rather than manual math. This is just a pet project written in React. `,
             "EmptySemester": "You currently have no semesters! Start by Creating a Semester.",
             "AddSemester": "Add Semester",
             "ShowGradeValue": "Show Grade Value",
@@ -23,11 +25,19 @@ const LanguageResource = {
             "TotalCreditHours": "Total Credit Hours",
             "TotalGPA": "Total GPA",
             "TotalCredit": "Total GPA",
+            "GradeValue": "Grade Value",
+            "ChangeFormatDialogTitle": "Warning: Change GPA Format",
+            "ChangeFormatDialogMessage": "Are you sure you want to change gpa format? Doing so will reset your output. Proceed?",
+            "OK": "OK",
+            "Cancel": "Cancel",
+            "DoNotRemind": "Don't Remind Me Again",
         }
     },
     jp: {
         translation: {
             "EmptySemester": "まだ学期が入っていない。",
+            "IntroductionMessage": "どうも。このサイトは自分の暇で作ってみたプロジェクト。SwinburneのGPAを簡単に計算するために作ってきた。このサイトの使ったフレームワークはReactです。どうぞ使ってください。",
+            "DoNotRemind": "二度と表示しない",
             "AddSemester": "新しい学期",
             "ShowGradeValue": "成績を表示",
             "ShowSubjectName": "科目を表示",
@@ -48,6 +58,11 @@ const LanguageResource = {
             "ProcessGPA": "GPAを計算",
             "TotalCreditHours": "単位のまとめ",
             "TotalGPA": "GPAのまとめ",
+            "GradeValue": "グレードの価値",
+            "ChangeFormatDialogTitle": "注意:GPAの編集",
+            "ChangeFormatDialogMessage": "GPAフォーマットを編集したら計算したGPAがリセットしまう。続きますか?",
+            "OK": "はい",
+            "Cancel": "キヤンセル",
         }
     }
 };
