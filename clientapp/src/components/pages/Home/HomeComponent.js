@@ -1,16 +1,18 @@
 import { Select, MenuItem, InputLabel, TextField, Button, Switch, Paper, Card, FormHelperText } from '@mui/material';
-import Flex from '@react-css/flex';
 import { useState } from 'react';
-import IntroductionDialog from '../IntroductionDialog';
+import { useTranslation } from 'react-i18next';
+import Flex from '@react-css/flex';
+import IntroductionDialog from '../IntroductionDialog/IntroductionDialog';
 import SharedAlertDialog from '../../shared/SharedAlertDialog/SharedAlertDialog';
 import minus from '../../../assets/img/minus.svg';
-import malaysia from '../../../assets/img/malaysia.png';
-import australia from '../../../assets/img/australia.png';
+import malaysia from '../../../assets/img/country_flags/malaysia.png';
+import australia from '../../../assets/img/country_flags/australia.png';
 import komaruman from '../../../assets/img/kaisya_komaru_man.png'
 import './HomeComponent.css';
 
 const HomeComponent = () => {
 
+    const { t } = useTranslation();
     const [semesters, setSemesters] = useState([]);
     const [creditHours, setCredithours] = useState(12.5);
     const [results, setResults] = useState({});
@@ -297,7 +299,7 @@ const HomeComponent = () => {
                         <Flex flexDirection='column'>
                             <img src={komaruman} className="mx-auto empty-container" alt="alternative" />
                             <strong>
-                                <h4>You currently have no semesters! Start by Creating a Semester</h4>
+                                <h4>{t('EmptySemester')}</h4>
                             </strong>
                         </Flex>
                 }

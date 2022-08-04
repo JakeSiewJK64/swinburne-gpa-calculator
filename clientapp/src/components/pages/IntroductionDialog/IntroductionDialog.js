@@ -1,5 +1,5 @@
 import { DialogTitle, Dialog, Button, DialogActions, DialogContentText, DialogContent } from '@mui/material';
-import anime from '../../assets/img/anime.png';
+import anime from '../../../assets/img/anime.png';
 import { useState } from 'react';
 
 const IntroductionDialog = () => {
